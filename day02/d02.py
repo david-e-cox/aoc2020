@@ -1,26 +1,19 @@
 #!/usr/bin/python3
 from collections import defaultdict
 
-# Read input file
+# Open input file
 f=open('input.txt');
-inFile =f.read().split('\n');
-f.close()
-
-# Test run
-#inFile=[ '1-3 a: abcde','1-3 b: cdefg','2-9 c: ccccccccc']
 
 # Initialize Counters
 goodCountA=0
 goodCountB=0
 
+# Test run
+#f=[ '1-3 a: abcde','1-3 b: cdefg','2-9 c: ccccccccc']
 
-for line in inFile:
+for line in f:
     # Create an empty dictionary with default keys set to a value of zero
-    lCount = defaultdict(lambda: 0,dict())
-
-    # Catch end of file, exit the loop on an empty line
-    if len(line)<1:
-        break
+    lCount = defaultdict(lambda: 0)
 
     # parse min/max values, reference character and password from each line
     ls = line.split()
