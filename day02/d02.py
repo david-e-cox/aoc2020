@@ -15,14 +15,14 @@ goodCountB=0
 
 
 for line in inFile:
-    # Create a empty dictionary with default keys set to a value of zero
+    # Create an empty dictionary with default keys set to a value of zero
     lCount = defaultdict(lambda: 0,dict())
 
-    # Catch end of file, exit loop an empty line
+    # Catch end of file, exit the loop on an empty line
     if len(line)<1:
         break
 
-    # parse min/max values, refernece character and password from each line
+    # parse min/max values, reference character and password from each line
     minmax = [int(j) for j in line.split()[0].split('-')]
     char   = line.split()[1].split(':')[0]
     pwd    = line.split()[2]
@@ -31,7 +31,7 @@ for line in inFile:
     for c in pwd:
         lCount[c] += 1
 
-    # Check count against limits
+    # Check count against limits for reference character
     if lCount[char] >= minmax[0] and lCount[char] <= minmax[1]:
         goodCountA+=1
 
