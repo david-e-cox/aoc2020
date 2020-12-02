@@ -23,9 +23,10 @@ for line in inFile:
         break
 
     # parse min/max values, reference character and password from each line
-    minmax = [int(j) for j in line.split()[0].split('-')]
-    char   = line.split()[1].split(':')[0]
-    pwd    = line.split()[2]
+    ls = line.split()
+    minmax = [int(j) for j in ls[0].split('-')]
+    char   = ls[1].split(':')[0]
+    pwd    = ls[2]
 
     # Tally up letter count in a dictionary
     for c in pwd:
