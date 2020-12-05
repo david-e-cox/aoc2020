@@ -30,58 +30,43 @@ for entry in passport:
     if ( (len(entry.keys())==8) or ( (len(entry.keys())==7) and ('cid' not in entry) ) ):
         goodCountA+=1
 
-    # Part B: only checks ones valid from Part-A
-        isOkay=True  # Assume correct, negate if condition is violated
-
+        # Part B: additional check above Part-A requirements
         # Date Ranges
         if int(entry['byr'])<1920 or int(entry['byr'])>2002:
-            isOkay=False
             continue
 
         if int(entry['iyr'])<2010 or int(entry['iyr'])>2020:
-            isOkay=False
             continue
 
         if int(entry['eyr'])<2020 or int(entry['eyr'])>2030:
-            isOkay=False
             continue
-
         
         # Height, with units
         if entry['hgt'][-2:]=='cm':
             if int(entry['hgt'][:-2])<150 or int(entry['hgt'][:-2])>193:
-                isOkay=False
                 continue
         elif (entry['hgt'][-2:])=='in':
             if int(entry['hgt'][:-2])<59 or int(entry['hgt'][:-2])>76:                
-                isOkay=False
                 continue
         else: # No, or invalid units provided
-           isOkay=False
            continue
 
-
-       
-        # Check hex # followed by 6 valid chars
+        # Check hex, # followed by 6 valid chars
         match = re.match('#[0-9a-f]{6}',entry['hcl'])
         if not match or len(entry['hcl'])!=7:
-            isOkay=False
             continue
 
         # Check eye color, member in set
         if entry['ecl'] not in ['amb','blu','brn','gry','grn','hzl','oth']:
-            isOkay=False
             continue
 
         # Check PID, 9 numbers
         M=re.match('[0-9]{9}',entry['pid'])
         if not M or len(entry['pid'])!=9:
-            isOkay=False
             continue
 
-        # If were are still okay, increment counter
-        if isOkay:
-            goodCountB+=1
+        # If we made it here entry is valid, increment counter
+        goodCountB+=1
             
 # Done with all move types, print count and count-product    
 print("The solution to part A is {0:d}".format(goodCountA))
