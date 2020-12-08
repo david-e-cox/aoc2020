@@ -51,8 +51,8 @@ while len(e)>count:
 # Part B: build tree with bags, incrementing id counter for each
 t=Tree()
 t.create_node('shiny_gold',0)
-cnt=addBagSet(rules, 'shiny_gold' , t, 0 ,0)
-cntLast=0;
+cnt=0;
+cntLast=-1;
 while(cnt>cntLast):
     print("Node Count {}".format(cnt))
     cntLast=cnt
