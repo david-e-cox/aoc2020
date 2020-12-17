@@ -75,15 +75,15 @@ for fieldNdx in range(nFields):
 # Map of field names to field index                
 fieldMap=dict()
 while len(couldBe)>0:
-    fn=returnNdx(couldBe)
-    fieldMap[fn[0]]=fn[1];
+    name,index=returnNdx(couldBe)
+    fieldMap[name]=index
     # found singular match, eliminate that field
-    del couldBe[fn[0]]
-    # And set the value to zero in all other fields
+    del couldBe[name]
+    # And set the value at that index to zero in all other fields
     for k in couldBe:
-        couldBe[k][fn[1]]=0
+        couldBe[k][index]=0
 
-# using map take product of values for fields beginning with departure
+# using map, take product of values for fields beginning with "departure"
 departProd=1
 for k in fieldMap:
     if k.startswith('departure'):
